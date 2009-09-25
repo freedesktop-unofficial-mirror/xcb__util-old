@@ -122,18 +122,18 @@ void xcb_get_text_property_reply_wipe(xcb_get_text_property_reply_t *prop);
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
-void xcb_set_wm_name_checked(xcb_connection_t *c,
-                             xcb_window_t window,
-                             xcb_atom_t encoding,
-                             uint32_t name_len,
-                             const char *name);
+xcb_void_cookie_t xcb_set_wm_name_checked(xcb_connection_t *c,
+					  xcb_window_t window,
+					  xcb_atom_t encoding,
+					  uint32_t name_len,
+					  const char *name);
 
 /**
  * @see xcb_set_wm_name_checked()
  */
-void xcb_set_wm_name(xcb_connection_t *c, xcb_window_t window,
-                     xcb_atom_t encoding, uint32_t name_len,
-                     const char *name);
+xcb_void_cookie_t xcb_set_wm_name(xcb_connection_t *c, xcb_window_t window,
+				  xcb_atom_t encoding, uint32_t name_len,
+				  const char *name);
 
 /**
  * @brief Deliver a GetProperty request to the X server for WM_NAME.
@@ -171,8 +171,8 @@ uint8_t xcb_get_wm_name_reply(xcb_connection_t *c,
  * @param handler The callback.
  * @param data data given to the callback.
  */
-void xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
-                       xcb_generic_property_handler_t handler, void *data);
+uint8_t xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
+			  xcb_generic_property_handler_t handler, void *data);
 
 /* WM_ICON_NAME */
 
@@ -184,16 +184,16 @@ void xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
-void xcb_set_wm_icon_name_checked(xcb_connection_t *c, xcb_window_t window,
-                                  xcb_atom_t encoding, uint32_t name_len,
-                                  const char *name);
+xcb_void_cookie_t xcb_set_wm_icon_name_checked(xcb_connection_t *c, xcb_window_t window,
+					       xcb_atom_t encoding, uint32_t name_len,
+					       const char *name);
 
 /**
  * @see xcb_set_wm_icon_name_checked()
  */
-void xcb_set_wm_icon_name(xcb_connection_t *c, xcb_window_t window,
-                          xcb_atom_t encoding, uint32_t name_len,
-                          const char *name);
+xcb_void_cookie_t xcb_set_wm_icon_name(xcb_connection_t *c, xcb_window_t window,
+				       xcb_atom_t encoding, uint32_t name_len,
+				       const char *name);
 
 /**
  * @brief Send request to get WM_ICON_NAME property of a window.
@@ -231,9 +231,10 @@ uint8_t xcb_get_wm_icon_name_reply(xcb_connection_t *c,
  * @param handler The callback.
  * @param data data given to the callback.
  */
-void xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
-                            xcb_generic_property_handler_t handler,
-                            void *data);
+uint8_t xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs,
+			       uint32_t long_len,
+			       xcb_generic_property_handler_t handler,
+			       void *data);
 
 /* WM_CLIENT_MACHINE */
 
@@ -245,16 +246,20 @@ void xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
-void xcb_set_wm_client_machine_checked(xcb_connection_t *c, xcb_window_t window,
-                                       xcb_atom_t encoding, uint32_t name_len,
-                                       const char *name);
+xcb_void_cookie_t xcb_set_wm_client_machine_checked(xcb_connection_t *c,
+						    xcb_window_t window,
+						    xcb_atom_t encoding,
+						    uint32_t name_len,
+						    const char *name);
 
 /**
  * @see xcb_set_wm_client_machine_checked()
  */
-void xcb_set_wm_client_machine(xcb_connection_t *c, xcb_window_t window,
-                               xcb_atom_t encoding, uint32_t name_len,
-                               const char *name);
+xcb_void_cookie_t xcb_set_wm_client_machine(xcb_connection_t *c,
+					    xcb_window_t window,
+					    xcb_atom_t encoding,
+					    uint32_t name_len,
+					    const char *name);
 
 /**
  * @brief Send request to get WM_CLIENT_MACHINE property of a window.
@@ -292,10 +297,10 @@ uint8_t xcb_get_wm_client_machine_reply(xcb_connection_t *c,
  * @param handler The callback.
  * @param data data given to the callback.
  */
-void xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs,
-                                 uint32_t long_len,
-                                 xcb_generic_property_handler_t handler,
-                                 void *data);
+uint8_t xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs,
+				    uint32_t long_len,
+				    xcb_generic_property_handler_t handler,
+				    void *data);
 
 /* WM_CLASS */
 
@@ -530,14 +535,18 @@ void xcb_size_hints_set_win_gravity(xcb_size_hints_t *hints,
  * @param property Property to set value for.
  * @param hints Hints value to set.
  */
-void xcb_set_wm_size_hints_checked(xcb_connection_t *c, xcb_window_t window,
-                                   xcb_atom_t property, xcb_size_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_size_hints_checked(xcb_connection_t *c,
+						xcb_window_t window,
+						xcb_atom_t property,
+						xcb_size_hints_t *hints);
 
 /**
  * @see xcb_set_wm_size_hints_checked()
  */
-void xcb_set_wm_size_hints(xcb_connection_t *c, xcb_window_t window,
-                           xcb_atom_t property, xcb_size_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_size_hints(xcb_connection_t *c,
+					xcb_window_t window,
+					xcb_atom_t property,
+					xcb_size_hints_t *hints);
 
 /**
  * @brief Send request to get size hints structure for the named property.
@@ -582,14 +591,16 @@ uint8_t xcb_get_wm_size_hints_reply(xcb_connection_t *c,
  * @param window Window X identifier.
  * @param hints Hints value to set.
  */
-void xcb_set_wm_normal_hints_checked(xcb_connection_t *c, xcb_window_t window,
-                                     xcb_size_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_normal_hints_checked(xcb_connection_t *c,
+						  xcb_window_t window,
+						  xcb_size_hints_t *hints);
 
 /**
  * @see xcb_set_wm_normal_hints_checked()
  */
-void xcb_set_wm_normal_hints(xcb_connection_t *c, xcb_window_t window,
-                             xcb_size_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_normal_hints(xcb_connection_t *c,
+					  xcb_window_t window,
+					  xcb_size_hints_t *hints);
 
 /**
  * @brief Send request to get WM_NORMAL_HINTS property of a window.
@@ -767,14 +778,16 @@ void xcb_wm_hints_set_urgency(xcb_wm_hints_t *hints);
  * @param window Window X identifier.
  * @param hints Hints value to set.
  */
-void xcb_set_wm_hints_checked(xcb_connection_t *c, xcb_window_t window,
-                              xcb_wm_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_hints_checked(xcb_connection_t *c,
+					   xcb_window_t window,
+					   xcb_wm_hints_t *hints);
 
 /**
  * @see xcb_set_wm_hints_checked()
  */
-void xcb_set_wm_hints(xcb_connection_t *c, xcb_window_t window,
-                      xcb_wm_hints_t *hints);
+xcb_void_cookie_t xcb_set_wm_hints(xcb_connection_t *c,
+				   xcb_window_t window,
+				   xcb_wm_hints_t *hints);
 
 /**
  * @brief Send request to get WM_HINTS property of a window.
@@ -828,16 +841,20 @@ uint8_t xcb_get_wm_hints_reply(xcb_connection_t *c,
  * @param list_len Atom list len.
  * @param list Atom list.
  */
-void xcb_set_wm_protocols_checked(xcb_connection_t *c, xcb_atom_t wm_protocols,
-                                  xcb_window_t window, uint32_t list_len,
-                                  xcb_atom_t *list);
+xcb_void_cookie_t xcb_set_wm_protocols_checked(xcb_connection_t *c,
+					       xcb_atom_t wm_protocols,
+					       xcb_window_t window,
+					       uint32_t list_len,
+					       xcb_atom_t *list);
 
 /**
  * @see xcb_set_wm_protocols_checked()
  */
-void xcb_set_wm_protocols(xcb_connection_t *c, xcb_atom_t wm_protocols,
-                          xcb_window_t window, uint32_t list_len,
-                          xcb_atom_t *list);
+xcb_void_cookie_t xcb_set_wm_protocols(xcb_connection_t *c,
+				       xcb_atom_t wm_protocols,
+				       xcb_window_t window,
+				       uint32_t list_len,
+				       xcb_atom_t *list);
 
 /**
  * @brief WM_PROTOCOLS structure.
