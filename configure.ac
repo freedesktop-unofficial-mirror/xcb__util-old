@@ -1,6 +1,6 @@
 dnl AC_TYPE_SSIZE_T is defined from 2.59c
 AC_PREREQ(2.59c)
-AC_INIT([xcb-util],0.3.6,[xcb@lists.freedesktop.org])
+AC_INIT([xcb-util],0.3.7,[xcb@lists.freedesktop.org])
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
