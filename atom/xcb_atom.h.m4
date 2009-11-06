@@ -40,7 +40,17 @@ char *xcb_atom_name_by_screen(const char *base, uint8_t screen);
 char *xcb_atom_name_by_resource(const char *base, uint32_t resource);
 char *xcb_atom_name_unique(const char *base, uint32_t id);
 
-define(`DO', `extern const xcb_atom_t $1;')dnl
+#ifndef X_DEPRECATED
+#ifdef __GNUC__
+#define X_DEPRECATED __attribute__((deprecated))
+#else
+#define X_DEPRECATED
+#endif
+#endif
+
+/* These constants are deprecated in favour of XCB_ATOM_*
+   from xproto.h */
+define(`DO', `extern const xcb_atom_t $1 X_DEPRECATED;')dnl
 include(atomlist.m4)`'dnl
 
 #ifdef __cplusplus
