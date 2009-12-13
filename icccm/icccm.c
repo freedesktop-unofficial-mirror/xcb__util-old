@@ -31,8 +31,10 @@
 #include <limits.h>
 #include <string.h>
 
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+
 #include "xcb_icccm.h"
-#include "xcb_atom.h"
 
 xcb_get_property_cookie_t
 xcb_get_text_property(xcb_connection_t *c,
@@ -83,7 +85,7 @@ xcb_set_wm_name_checked(xcb_connection_t *c, xcb_window_t window,
                         xcb_atom_t encoding, uint32_t name_len,
                         const char *name)
 {
-  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, WM_NAME,
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_NAME,
 				     encoding, 8, name_len, name);
 }
 
@@ -91,7 +93,7 @@ xcb_void_cookie_t
 xcb_set_wm_name(xcb_connection_t *c, xcb_window_t window, xcb_atom_t encoding,
                 uint32_t name_len, const char *name)
 {
-  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, WM_NAME,
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_NAME,
 			     encoding, 8, name_len, name);
 }
 
@@ -99,14 +101,14 @@ xcb_get_property_cookie_t
 xcb_get_wm_name(xcb_connection_t *c,
                 xcb_window_t window)
 {
-  return xcb_get_text_property(c, window, WM_NAME);
+  return xcb_get_text_property(c, window, XCB_ATOM_WM_NAME);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_name_unchecked(xcb_connection_t *c,
                           xcb_window_t window)
 {
-  return xcb_get_text_property_unchecked(c, window, WM_NAME);
+  return xcb_get_text_property_unchecked(c, window, XCB_ATOM_WM_NAME);
 }
 
 uint8_t
@@ -122,7 +124,7 @@ uint8_t
 xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
                   xcb_generic_property_handler_t handler, void *data)
 {
-  return xcb_property_set_handler(prophs, WM_NAME, long_len, handler, data);
+  return xcb_property_set_handler(prophs, XCB_ATOM_WM_NAME, long_len, handler, data);
 }
 
 /* WM_ICON_NAME */
@@ -133,7 +135,7 @@ xcb_set_wm_icon_name_checked(xcb_connection_t *c, xcb_window_t window,
                              const char *name)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     WM_ICON_NAME, encoding, 8, name_len,
+				     XCB_ATOM_WM_ICON_NAME, encoding, 8, name_len,
 				     name);
 }
 
@@ -141,7 +143,7 @@ xcb_void_cookie_t
 xcb_set_wm_icon_name(xcb_connection_t *c, xcb_window_t window,
                      xcb_atom_t encoding, uint32_t name_len, const char *name)
 {
-  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, WM_ICON_NAME,
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_ICON_NAME,
 			     encoding, 8, name_len, name);
 }
 
@@ -149,14 +151,14 @@ xcb_get_property_cookie_t
 xcb_get_wm_icon_name(xcb_connection_t *c,
                      xcb_window_t window)
 {
-  return xcb_get_text_property(c, window, WM_ICON_NAME);
+  return xcb_get_text_property(c, window, XCB_ATOM_WM_ICON_NAME);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_icon_name_unchecked(xcb_connection_t *c,
                                xcb_window_t window)
 {
-  return xcb_get_text_property_unchecked(c, window, WM_ICON_NAME);
+  return xcb_get_text_property_unchecked(c, window, XCB_ATOM_WM_ICON_NAME);
 }
 
 uint8_t
@@ -172,7 +174,7 @@ uint8_t
 xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
                        xcb_generic_property_handler_t handler, void *data)
 {
-  return xcb_property_set_handler(prophs, WM_ICON_NAME, long_len, handler,
+  return xcb_property_set_handler(prophs, XCB_ATOM_WM_ICON_NAME, long_len, handler,
 				  data);
 }
 
@@ -184,7 +186,7 @@ xcb_set_wm_client_machine_checked(xcb_connection_t *c, xcb_window_t window,
                                   const char *name)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     WM_CLIENT_MACHINE, encoding, 8, name_len,
+				     XCB_ATOM_WM_CLIENT_MACHINE, encoding, 8, name_len,
 				     name);
 }
 
@@ -194,7 +196,7 @@ xcb_set_wm_client_machine(xcb_connection_t *c, xcb_window_t window,
                           const char *name)
 {
   return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
-			     WM_CLIENT_MACHINE, encoding, 8, name_len,
+			     XCB_ATOM_WM_CLIENT_MACHINE, encoding, 8, name_len,
 			     name);
 }
 
@@ -202,14 +204,14 @@ xcb_get_property_cookie_t
 xcb_get_wm_client_machine(xcb_connection_t *c,
                           xcb_window_t window)
 {
-  return xcb_get_text_property(c, window, WM_CLIENT_MACHINE);
+  return xcb_get_text_property(c, window, XCB_ATOM_WM_CLIENT_MACHINE);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_client_machine_unchecked(xcb_connection_t *c,
                                     xcb_window_t window)
 {
-  return xcb_get_text_property_unchecked(c, window, WM_CLIENT_MACHINE);
+  return xcb_get_text_property_unchecked(c, window, XCB_ATOM_WM_CLIENT_MACHINE);
 }
 
 uint8_t
@@ -225,7 +227,7 @@ uint8_t
 xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs, uint32_t long_len,
                             xcb_generic_property_handler_t handler, void *data)
 {
-  return xcb_property_set_handler(prophs, WM_CLIENT_MACHINE, long_len, handler,
+  return xcb_property_set_handler(prophs, XCB_ATOM_WM_CLIENT_MACHINE, long_len, handler,
 				  data);
 }
 
@@ -234,20 +236,20 @@ xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs, uint32_t long_len,
 xcb_get_property_cookie_t
 xcb_get_wm_class(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_property(c, 0, window, WM_CLASS, STRING, 0L, 2048L);
+  return xcb_get_property(c, 0, window, XCB_ATOM_WM_CLASS, XCB_ATOM_STRING, 0L, 2048L);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_class_unchecked(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_property_unchecked(c, 0, window, WM_CLASS, STRING, 0L, 2048L);
+  return xcb_get_property_unchecked(c, 0, window, XCB_ATOM_WM_CLASS, XCB_ATOM_STRING, 0L, 2048L);
 }
 
 uint8_t
 xcb_get_wm_class_from_reply(xcb_get_wm_class_reply_t *prop,
                             xcb_get_property_reply_t *reply)
 {
-  if(!reply || reply->type != STRING || reply->format != 8)
+  if(!reply || reply->type != XCB_ATOM_STRING || reply->format != 8)
     return 0;
 
   prop->_reply = reply;
@@ -285,20 +287,20 @@ xcb_get_wm_class_reply_wipe(xcb_get_wm_class_reply_t *prop)
 xcb_get_property_cookie_t
 xcb_get_wm_transient_for(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_property(c, 0, window, WM_TRANSIENT_FOR, WINDOW, 0, 1);
+  return xcb_get_property(c, 0, window, XCB_ATOM_WM_TRANSIENT_FOR, XCB_ATOM_WINDOW, 0, 1);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_transient_for_unchecked(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_property_unchecked(c, 0, window, WM_TRANSIENT_FOR, WINDOW, 0, 1);
+  return xcb_get_property_unchecked(c, 0, window, XCB_ATOM_WM_TRANSIENT_FOR, XCB_ATOM_WINDOW, 0, 1);
 }
 
 uint8_t
 xcb_get_wm_transient_for_from_reply(xcb_window_t *prop,
                                     xcb_get_property_reply_t *reply)
 {
-  if(!reply || reply->type != WINDOW || reply->format != 32 || !reply->length)
+  if(!reply || reply->type != XCB_ATOM_WINDOW || reply->format != 32 || !reply->length)
     return 0;
 
   *prop = *((xcb_window_t *) xcb_get_property_value(reply));
@@ -406,7 +408,7 @@ xcb_set_wm_size_hints_checked(xcb_connection_t *c, xcb_window_t window,
                               xcb_atom_t property, xcb_size_hints_t *hints)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, property,
-				     WM_SIZE_HINTS, 32, sizeof(*hints) >> 2,
+				     XCB_ATOM_WM_SIZE_HINTS, 32, sizeof(*hints) >> 2,
 				     hints);
 }
 
@@ -415,7 +417,7 @@ xcb_set_wm_size_hints(xcb_connection_t *c, xcb_window_t window,
                       xcb_atom_t property, xcb_size_hints_t *hints)
 {
   return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, property,
-			     WM_SIZE_HINTS, 32, sizeof(*hints) >> 2, hints);
+			     XCB_ATOM_WM_SIZE_HINTS, 32, sizeof(*hints) >> 2, hints);
 }
 
 xcb_get_property_cookie_t
@@ -423,14 +425,14 @@ xcb_get_wm_size_hints(xcb_connection_t *c, xcb_window_t window,
                       xcb_atom_t property)
 {
   /* NumPropSizeElements = 18 (ICCCM version 1). */
-  return xcb_get_property(c, 0, window, property, WM_SIZE_HINTS, 0L, 18);
+  return xcb_get_property(c, 0, window, property, XCB_ATOM_WM_SIZE_HINTS, 0L, 18);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_size_hints_unchecked(xcb_connection_t *c, xcb_window_t window,
                                 xcb_atom_t property)
 {
-  return xcb_get_property_unchecked(c, 0, window, property, WM_SIZE_HINTS,
+  return xcb_get_property_unchecked(c, 0, window, property, XCB_ATOM_WM_SIZE_HINTS,
                                     0L, 18);
 }
 
@@ -444,7 +446,7 @@ xcb_get_wm_size_hints_from_reply(xcb_size_hints_t *hints, xcb_get_property_reply
 
   int length = xcb_get_property_value_length(reply) / (reply->format / 8);
 
-  if (!(reply->type == WM_SIZE_HINTS &&
+  if (!(reply->type == XCB_ATOM_WM_SIZE_HINTS &&
         (reply->format == 8  || reply->format == 16 ||
          reply->format == 32) &&
         /* OldNumPropSizeElements = 15 (pre-ICCCM) */
@@ -490,26 +492,26 @@ xcb_void_cookie_t
 xcb_set_wm_normal_hints_checked(xcb_connection_t *c, xcb_window_t window,
                                 xcb_size_hints_t *hints)
 {
-  return xcb_set_wm_size_hints_checked(c, window, WM_NORMAL_HINTS, hints);
+  return xcb_set_wm_size_hints_checked(c, window, XCB_ATOM_WM_NORMAL_HINTS, hints);
 }
 
 xcb_void_cookie_t
 xcb_set_wm_normal_hints(xcb_connection_t *c, xcb_window_t window,
                         xcb_size_hints_t *hints)
 {
-  return xcb_set_wm_size_hints(c, window, WM_NORMAL_HINTS, hints);
+  return xcb_set_wm_size_hints(c, window, XCB_ATOM_WM_NORMAL_HINTS, hints);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_normal_hints(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_wm_size_hints(c, window, WM_NORMAL_HINTS);
+  return xcb_get_wm_size_hints(c, window, XCB_ATOM_WM_NORMAL_HINTS);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_normal_hints_unchecked(xcb_connection_t *c, xcb_window_t window)
 {
-  return xcb_get_wm_size_hints_unchecked(c, window, WM_NORMAL_HINTS);
+  return xcb_get_wm_size_hints_unchecked(c, window, XCB_ATOM_WM_NORMAL_HINTS);
 }
 
 uint8_t
@@ -601,23 +603,23 @@ xcb_void_cookie_t
 xcb_set_wm_hints_checked(xcb_connection_t *c, xcb_window_t window,
                          xcb_wm_hints_t *hints)
 {
-  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, WM_HINTS,
-				     WM_HINTS, 32, sizeof(*hints) >> 2, hints);
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_HINTS,
+				     XCB_ATOM_WM_HINTS, 32, sizeof(*hints) >> 2, hints);
 }
 
 xcb_void_cookie_t
 xcb_set_wm_hints(xcb_connection_t *c, xcb_window_t window,
                  xcb_wm_hints_t *hints)
 {
-  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, WM_HINTS,
-			     WM_HINTS, 32, sizeof(*hints) >> 2, hints);
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_HINTS,
+			     XCB_ATOM_WM_HINTS, 32, sizeof(*hints) >> 2, hints);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_hints(xcb_connection_t *c,
                  xcb_window_t window)
 {
-  return xcb_get_property(c, 0, window, WM_HINTS, WM_HINTS, 0L,
+  return xcb_get_property(c, 0, window, XCB_ATOM_WM_HINTS, XCB_ATOM_WM_HINTS, 0L,
                           XCB_NUM_WM_HINTS_ELEMENTS);
 }
 
@@ -625,7 +627,7 @@ xcb_get_property_cookie_t
 xcb_get_wm_hints_unchecked(xcb_connection_t *c,
                            xcb_window_t window)
 {
-  return xcb_get_property_unchecked(c, 0, window, WM_HINTS, WM_HINTS, 0L,
+  return xcb_get_property_unchecked(c, 0, window, XCB_ATOM_WM_HINTS, XCB_ATOM_WM_HINTS, 0L,
                                     XCB_NUM_WM_HINTS_ELEMENTS);
 }
 
@@ -633,7 +635,7 @@ uint8_t
 xcb_get_wm_hints_from_reply(xcb_wm_hints_t *hints,
                             xcb_get_property_reply_t *reply)
 {
-  if(!reply || reply->type != WM_HINTS || reply->format != 32)
+  if(!reply || reply->type != XCB_ATOM_WM_HINTS || reply->format != 32)
     return 0;
 
   int length = xcb_get_property_value_length(reply);
@@ -670,7 +672,7 @@ xcb_set_wm_protocols_checked(xcb_connection_t *c, xcb_atom_t wm_protocols,
                              xcb_atom_t *list)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     wm_protocols, ATOM, 32, list_len, list);
+				     wm_protocols, XCB_ATOM_ATOM, 32, list_len, list);
 }
 
 xcb_void_cookie_t
@@ -678,14 +680,14 @@ xcb_set_wm_protocols(xcb_connection_t *c, xcb_atom_t wm_protocols,
                      xcb_window_t window, uint32_t list_len, xcb_atom_t *list)
 {
   return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, wm_protocols,
-			     ATOM, 32, list_len, list);
+			     XCB_ATOM_ATOM, 32, list_len, list);
 }
 
 xcb_get_property_cookie_t
 xcb_get_wm_protocols(xcb_connection_t *c, xcb_window_t window,
                      xcb_atom_t wm_protocol_atom)
 {
-  return xcb_get_property(c, 0, window, wm_protocol_atom, ATOM, 0, UINT_MAX);
+  return xcb_get_property(c, 0, window, wm_protocol_atom, XCB_ATOM_ATOM, 0, UINT_MAX);
 }
 
 xcb_get_property_cookie_t
@@ -693,14 +695,14 @@ xcb_get_wm_protocols_unchecked(xcb_connection_t *c,
                                xcb_window_t window,
                                xcb_atom_t wm_protocol_atom)
 {
-  return xcb_get_property_unchecked(c, 0, window, wm_protocol_atom, ATOM, 0,
+  return xcb_get_property_unchecked(c, 0, window, wm_protocol_atom, XCB_ATOM_ATOM, 0,
                                     UINT_MAX);
 }
 
 uint8_t
 xcb_get_wm_protocols_from_reply(xcb_get_property_reply_t *reply, xcb_get_wm_protocols_reply_t *protocols)
 {
-  if(!reply || reply->type != ATOM || reply->format != 32)
+  if(!reply || reply->type != XCB_ATOM_ATOM || reply->format != 32)
     return 0;
 
   protocols->_reply = reply;

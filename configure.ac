@@ -56,7 +56,7 @@ PKG_CHECK_MODULES(XCB, xcb >= 1.4)
 ######
 # Check version of xcb-proto that xcb was compiled against
 ######
-xcbproto_required=1.5
+xcbproto_required=1.6
 
 # Moved from AX_COMPARE_VERSION to maintain proper output
 AC_PROG_AWK

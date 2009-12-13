@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: XCB ICCCM library
 Description: XCB ICCCM binding
 Version: @PACKAGE_VERSION@
-Requires: xcb xcb-atom xcb-property
+Requires: xcb xcb-proto xcb-property
 Libs: -L${libdir} -lxcb-icccm @LIBS@
 Cflags: -I${includedir}
