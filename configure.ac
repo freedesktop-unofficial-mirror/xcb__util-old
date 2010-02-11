@@ -3,6 +3,7 @@ AC_PREREQ(2.59c)
 AC_INIT([xcb-util],0.3.7,[xcb@lists.freedesktop.org])
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
+AM_MAINTAINER_MODE
 
 AC_CHECK_PROGS(M4, [m4 gm4], [no])
 if test $M4 != "no" ; then
