@@ -452,6 +452,9 @@ typedef struct {
   uint32_t win_gravity;
 } xcb_size_hints_t;
 
+/** Number of elements in this structure */
+#define XCB_NUM_WM_SIZE_HINTS_ELEMENTS 18
+
 /**
  * @brief Set size hints to a given position.
  * @param hints SIZE_HINTS structure.
