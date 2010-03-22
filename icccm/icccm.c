@@ -233,6 +233,28 @@ xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs, uint32_t long_len,
 
 /* WM_CLASS */
 
+xcb_void_cookie_t
+xcb_set_wm_class_checked(xcb_connection_t *c,
+                         xcb_window_t window,
+                         uint32_t class_len,
+                         const char *class)
+{
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
+                                     XCB_ATOM_WM_CLASS, XCB_ATOM_STRING, 8,
+                                     class_len, class);
+}
+
+xcb_void_cookie_t
+xcb_set_wm_class(xcb_connection_t *c,
+                 xcb_window_t window,
+                 uint32_t class_len,
+                 const char *class)
+{
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
+                             XCB_ATOM_WM_CLASS, XCB_ATOM_STRING, 8,
+                             class_len, class);
+}
+
 xcb_get_property_cookie_t
 xcb_get_wm_class(xcb_connection_t *c, xcb_window_t window)
 {
@@ -283,6 +305,25 @@ xcb_get_wm_class_reply_wipe(xcb_get_wm_class_reply_t *prop)
 }
 
 /* WM_TRANSIENT_FOR */
+
+xcb_void_cookie_t
+xcb_set_wm_transient_for_checked(xcb_connection_t *c, xcb_window_t window,
+                                 xcb_window_t transient_for_window)
+{
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
+                                     XCB_ATOM_WM_TRANSIENT_FOR,
+                                     XCB_ATOM_WINDOW, 32, 1,
+                                     &transient_for_window);
+}
+
+xcb_void_cookie_t
+xcb_set_wm_transient_for(xcb_connection_t *c, xcb_window_t window,
+                         xcb_window_t transient_for_window)
+{
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
+                             XCB_ATOM_WM_TRANSIENT_FOR, XCB_ATOM_WINDOW, 32,
+                             1, &transient_for_window);
+}
 
 xcb_get_property_cookie_t
 xcb_get_wm_transient_for(xcb_connection_t *c, xcb_window_t window)

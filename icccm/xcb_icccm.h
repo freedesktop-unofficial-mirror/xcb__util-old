@@ -307,6 +307,32 @@ uint8_t xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs,
 /**
  * @brief WM_CLASS hint structure
  */
+
+/**
+ * @brief Deliver a SetProperty request to set WM_CLASS property value.
+ *
+ * WM_CLASS string is a concatenation of the instance and class name
+ * strings respectively (including null character).
+ *
+ * @param c The connection to the X server.
+ * @param window Window X identifier.
+ * @param class_len Length of WM_CLASS string.
+ * @param class WM_CLASS string.
+ * @return The request cookie.
+ */
+xcb_void_cookie_t xcb_set_wm_class_checked(xcb_connection_t *c,
+                                           xcb_window_t window,
+                                           uint32_t class_len,
+                                           const char *class);
+
+/**
+ * @see xcb_set_wm_class_checked()
+ */
+xcb_void_cookie_t xcb_set_wm_class(xcb_connection_t *c,
+                                   xcb_window_t window,
+                                   uint32_t class_len,
+                                   const char *class);
+
 typedef struct {
   /** Instance name */
   char *instance_name;
@@ -369,6 +395,24 @@ uint8_t xcb_get_wm_class_reply(xcb_connection_t *c,
 void xcb_get_wm_class_reply_wipe(xcb_get_wm_class_reply_t *prop);
 
 /* WM_TRANSIENT_FOR */
+
+/**
+ * @brief Deliver a SetProperty request to set WM_TRANSIENT_FOR property value.
+ * @param c The connection to the X server.
+ * @param window Window X identifier.
+ * @param transient_for_window The WM_TRANSIENT_FOR window X identifier.
+ * @return The request cookie.
+ */
+xcb_void_cookie_t xcb_set_wm_transient_for_checked(xcb_connection_t *c,
+                                                   xcb_window_t window,
+                                                   xcb_window_t transient_for_window);
+
+/**
+ * @see xcb_set_wm_transient_for
+ */
+xcb_void_cookie_t xcb_set_wm_transient_for(xcb_connection_t *c,
+                                           xcb_window_t window,
+                                           xcb_window_t transient_for_window);
 
 /**
  * @brief Send request to get WM_TRANSIENT_FOR property of a window.
