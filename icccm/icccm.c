@@ -82,19 +82,21 @@ xcb_get_text_property_reply_wipe(xcb_get_text_property_reply_t *prop)
 
 xcb_void_cookie_t
 xcb_set_wm_name_checked(xcb_connection_t *c, xcb_window_t window,
-                        xcb_atom_t encoding, uint32_t name_len,
-                        const char *name)
+                        xcb_atom_t encoding, uint8_t format,
+                        uint32_t name_len, const char *name)
 {
-  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_NAME,
-				     encoding, 8, name_len, name);
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
+                                     XCB_ATOM_WM_NAME, encoding, format,
+                                     name_len, name);
 }
 
 xcb_void_cookie_t
 xcb_set_wm_name(xcb_connection_t *c, xcb_window_t window, xcb_atom_t encoding,
-                uint32_t name_len, const char *name)
+                uint8_t format, uint32_t name_len, const char *name)
 {
-  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_NAME,
-			     encoding, 8, name_len, name);
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
+                             XCB_ATOM_WM_NAME, encoding, format, name_len,
+                             name);
 }
 
 xcb_get_property_cookie_t
@@ -131,20 +133,22 @@ xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
 
 xcb_void_cookie_t
 xcb_set_wm_icon_name_checked(xcb_connection_t *c, xcb_window_t window,
-                             xcb_atom_t encoding, uint32_t name_len,
-                             const char *name)
+                             xcb_atom_t encoding, uint8_t format,
+                             uint32_t name_len, const char *name)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     XCB_ATOM_WM_ICON_NAME, encoding, 8, name_len,
-				     name);
+                                     XCB_ATOM_WM_ICON_NAME, encoding, format,
+                                     name_len, name);
 }
 
 xcb_void_cookie_t
 xcb_set_wm_icon_name(xcb_connection_t *c, xcb_window_t window,
-                     xcb_atom_t encoding, uint32_t name_len, const char *name)
+                     xcb_atom_t encoding, uint8_t format, uint32_t name_len,
+                     const char *name)
 {
-  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, XCB_ATOM_WM_ICON_NAME,
-			     encoding, 8, name_len, name);
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
+                             XCB_ATOM_WM_ICON_NAME, encoding, format,
+                             name_len, name);
 }
 
 xcb_get_property_cookie_t
@@ -182,22 +186,22 @@ xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
 
 xcb_void_cookie_t
 xcb_set_wm_client_machine_checked(xcb_connection_t *c, xcb_window_t window,
-                                  xcb_atom_t encoding, uint32_t name_len,
-                                  const char *name)
+                                  xcb_atom_t encoding, uint8_t format,
+                                  uint32_t name_len, const char *name)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     XCB_ATOM_WM_CLIENT_MACHINE, encoding, 8, name_len,
-				     name);
+                                     XCB_ATOM_WM_CLIENT_MACHINE, encoding,
+                                     format, name_len, name);
 }
 
 xcb_void_cookie_t
 xcb_set_wm_client_machine(xcb_connection_t *c, xcb_window_t window,
-                          xcb_atom_t encoding, uint32_t name_len,
-                          const char *name)
+                          xcb_atom_t encoding, uint8_t format,
+                          uint32_t name_len, const char *name)
 {
   return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
-			     XCB_ATOM_WM_CLIENT_MACHINE, encoding, 8, name_len,
-			     name);
+                             XCB_ATOM_WM_CLIENT_MACHINE, encoding, format,
+                             name_len, name);
 }
 
 xcb_get_property_cookie_t

@@ -119,21 +119,23 @@ void xcb_get_text_property_reply_wipe(xcb_get_text_property_reply_t *prop);
  * @param c The connection to the X server.
  * @param window Window X identifier.
  * @param encoding Encoding used for the data passed in the name parameter, the set property will also have this encoding as its type.
+ * @param format Encoding format.
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
 xcb_void_cookie_t xcb_set_wm_name_checked(xcb_connection_t *c,
-					  xcb_window_t window,
-					  xcb_atom_t encoding,
-					  uint32_t name_len,
-					  const char *name);
+                                          xcb_window_t window,
+                                          xcb_atom_t encoding,
+                                          uint8_t format,
+                                          uint32_t name_len,
+                                          const char *name);
 
 /**
  * @see xcb_set_wm_name_checked()
  */
 xcb_void_cookie_t xcb_set_wm_name(xcb_connection_t *c, xcb_window_t window,
-				  xcb_atom_t encoding, uint32_t name_len,
-				  const char *name);
+                                  xcb_atom_t encoding, uint8_t format,
+                                  uint32_t name_len, const char *name);
 
 /**
  * @brief Deliver a GetProperty request to the X server for WM_NAME.
@@ -181,19 +183,26 @@ uint8_t xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
  * @param c The connection to the X server.
  * @param window Window X identifier.
  * @param encoding Encoding used for the data passed in the name parameter, the set property will also have this encoding as its type.
+ * @param format Encoding format.
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
-xcb_void_cookie_t xcb_set_wm_icon_name_checked(xcb_connection_t *c, xcb_window_t window,
-					       xcb_atom_t encoding, uint32_t name_len,
-					       const char *name);
+xcb_void_cookie_t xcb_set_wm_icon_name_checked(xcb_connection_t *c,
+                                               xcb_window_t window,
+                                               xcb_atom_t encoding,
+                                               uint8_t format,
+                                               uint32_t name_len,
+                                               const char *name);
 
 /**
  * @see xcb_set_wm_icon_name_checked()
  */
-xcb_void_cookie_t xcb_set_wm_icon_name(xcb_connection_t *c, xcb_window_t window,
-				       xcb_atom_t encoding, uint32_t name_len,
-				       const char *name);
+xcb_void_cookie_t xcb_set_wm_icon_name(xcb_connection_t *c,
+                                       xcb_window_t window,
+                                       xcb_atom_t encoding,
+                                       uint8_t format,
+                                       uint32_t name_len,
+                                       const char *name);
 
 /**
  * @brief Send request to get WM_ICON_NAME property of a window.
@@ -243,23 +252,26 @@ uint8_t xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs,
  * @param c The connection to the X server.
  * @param window Window X identifier.
  * @param encoding Encoding used for the data passed in the name parameter, the set property will also have this encoding as its type.
+ * @param format Encoding format.
  * @param name_len Length of name value to set.
  * @param name Name value to set.
  */
 xcb_void_cookie_t xcb_set_wm_client_machine_checked(xcb_connection_t *c,
-						    xcb_window_t window,
-						    xcb_atom_t encoding,
-						    uint32_t name_len,
-						    const char *name);
+                                                    xcb_window_t window,
+                                                    xcb_atom_t encoding,
+                                                    uint8_t format,
+                                                    uint32_t name_len,
+                                                    const char *name);
 
 /**
  * @see xcb_set_wm_client_machine_checked()
  */
 xcb_void_cookie_t xcb_set_wm_client_machine(xcb_connection_t *c,
-					    xcb_window_t window,
-					    xcb_atom_t encoding,
-					    uint32_t name_len,
-					    const char *name);
+                                            xcb_window_t window,
+                                            xcb_atom_t encoding,
+                                            uint8_t format,
+                                            uint32_t name_len,
+                                            const char *name);
 
 /**
  * @brief Send request to get WM_CLIENT_MACHINE property of a window.
