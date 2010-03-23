@@ -993,19 +993,19 @@ uint8_t xcb_get_wm_hints_reply(xcb_connection_t *c,
  * @param list Atom list.
  */
 xcb_void_cookie_t xcb_set_wm_protocols_checked(xcb_connection_t *c,
-					       xcb_atom_t wm_protocols,
-					       xcb_window_t window,
-					       uint32_t list_len,
-					       xcb_atom_t *list);
+                                               xcb_window_t window,
+                                               xcb_atom_t wm_protocols,
+                                               uint32_t list_len,
+                                               xcb_atom_t *list);
 
 /**
  * @see xcb_set_wm_protocols_checked()
  */
 xcb_void_cookie_t xcb_set_wm_protocols(xcb_connection_t *c,
-				       xcb_atom_t wm_protocols,
-				       xcb_window_t window,
-				       uint32_t list_len,
-				       xcb_atom_t *list);
+                                       xcb_window_t window,
+                                       xcb_atom_t wm_protocols,
+                                       uint32_t list_len,
+                                       xcb_atom_t *list);
 
 /**
  * @brief WM_PROTOCOLS structure.

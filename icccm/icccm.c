@@ -793,20 +793,20 @@ xcb_get_wm_hints_reply(xcb_connection_t *c,
 /* WM_PROTOCOLS */
 
 xcb_void_cookie_t
-xcb_set_wm_protocols_checked(xcb_connection_t *c, xcb_atom_t wm_protocols,
-                             xcb_window_t window, uint32_t list_len,
+xcb_set_wm_protocols_checked(xcb_connection_t *c, xcb_window_t window,
+                             xcb_atom_t wm_protocols, uint32_t list_len,
                              xcb_atom_t *list)
 {
   return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
-				     wm_protocols, XCB_ATOM_ATOM, 32, list_len, list);
+                                     wm_protocols, XCB_ATOM_ATOM, 32, list_len, list);
 }
 
 xcb_void_cookie_t
-xcb_set_wm_protocols(xcb_connection_t *c, xcb_atom_t wm_protocols,
-                     xcb_window_t window, uint32_t list_len, xcb_atom_t *list)
+xcb_set_wm_protocols(xcb_connection_t *c, xcb_window_t window,
+                     xcb_atom_t wm_protocols, uint32_t list_len, xcb_atom_t *list)
 {
   return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window, wm_protocols,
-			     XCB_ATOM_ATOM, 32, list_len, list);
+                             XCB_ATOM_ATOM, 32, list_len, list);
 }
 
 xcb_get_property_cookie_t
