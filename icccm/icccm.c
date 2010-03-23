@@ -182,6 +182,84 @@ xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
 				  data);
 }
 
+/* WM_COLORMAP_WINDOWS */
+
+xcb_void_cookie_t
+xcb_set_wm_colormap_windows_checked(xcb_connection_t *c,
+                                    xcb_window_t window,
+                                    xcb_atom_t wm_colormap_windows_atom,
+                                    uint32_t list_len,
+                                    const xcb_window_t *list)
+{
+  return xcb_change_property_checked(c, XCB_PROP_MODE_REPLACE, window,
+                                     wm_colormap_windows_atom, XCB_ATOM_WINDOW,
+                                     32, list_len, list);
+}
+
+xcb_void_cookie_t
+xcb_set_wm_colormap_windows(xcb_connection_t *c,
+                            xcb_window_t window,
+                            xcb_atom_t wm_colormap_windows_atom,
+                            uint32_t list_len,
+                            const xcb_atom_t *list)
+{
+  return xcb_change_property(c, XCB_PROP_MODE_REPLACE, window,
+                             wm_colormap_windows_atom, XCB_ATOM_WINDOW, 32,
+                             list_len, list);
+}
+
+
+xcb_get_property_cookie_t
+xcb_get_wm_colormap_windows(xcb_connection_t *c,
+                            xcb_window_t window,
+                            xcb_atom_t wm_colormap_windows_atom )
+{
+  return xcb_get_property(c, 0, window, wm_colormap_windows_atom,
+                          XCB_ATOM_WINDOW, 0, UINT_MAX);
+}
+
+xcb_get_property_cookie_t
+xcb_get_wm_colormap_windows_unchecked(xcb_connection_t *c,
+                                      xcb_window_t window,
+                                      xcb_atom_t wm_colormap_windows_atom)
+{
+  return xcb_get_property_unchecked(c, 0, window, wm_colormap_windows_atom,
+                                    XCB_ATOM_WINDOW, 0, UINT_MAX);
+}
+
+uint8_t
+xcb_get_wm_colormap_windows_from_reply(xcb_get_property_reply_t *reply,
+                                       xcb_get_wm_colormap_windows_reply_t *colormap_windows)
+{
+  if(!reply || reply->type != XCB_ATOM_WINDOW || reply->format != 32)
+    return 0;
+
+  colormap_windows->_reply = reply;
+  colormap_windows->windows_len = xcb_get_property_value_length(colormap_windows->_reply) /  (reply->format / 8);
+  colormap_windows->windows = (xcb_window_t *) xcb_get_property_value(colormap_windows->_reply);
+
+  return 1;
+}
+
+uint8_t
+xcb_get_wm_colormap_windows_reply(xcb_connection_t *c,
+                                  xcb_get_property_cookie_t cookie,
+                                  xcb_get_wm_colormap_windows_reply_t *colormap_windows,
+                                  xcb_generic_error_t **e)
+{
+  xcb_get_property_reply_t *reply = xcb_get_property_reply(c, cookie, e);
+  uint8_t ret = xcb_get_wm_colormap_windows_from_reply(reply, colormap_windows);
+  if(!ret)
+    free(reply);
+  return ret;
+}
+
+void
+xcb_get_wm_colormap_windows_reply_wipe(xcb_get_wm_colormap_windows_reply_t *colormap_windows)
+{
+  free(colormap_windows->_reply);
+}
+
 /* WM_CLIENT_MACHINE */
 
 xcb_void_cookie_t

@@ -245,6 +245,98 @@ uint8_t xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs,
 			       xcb_generic_property_handler_t handler,
 			       void *data);
 
+/* WM_COLORMAP_WINDOWS */
+
+/**
+ * @brief Deliver a ChangeProperty request to set WM_COLORMAP_WINDOWS property value.
+ * @param c The connection to the X server.
+ * @param wm_colormap_windows The WM_COLORMAP_WINDOWS atom
+ * @param window Window X identifier.
+ * @param list_len Windows list len.
+ * @param list Windows list.
+ * @return The request cookie.
+ */
+xcb_void_cookie_t xcb_set_wm_colormap_windows_checked(xcb_connection_t *c,
+                                                      xcb_window_t window,
+                                                      xcb_atom_t wm_colormap_windows_atom,
+                                                      uint32_t list_len,
+                                                      const xcb_window_t *list);
+
+/**
+ * @see xcb_set_wm_colormap_windows_checked()
+ */
+xcb_void_cookie_t xcb_set_wm_colormap_windows(xcb_connection_t *c,
+                                              xcb_window_t window,
+                                              xcb_atom_t wm_colormap_windows_atom,
+                                              uint32_t list_len,
+                                              const xcb_window_t *list);
+
+/**
+ * @brief WM_COLORMAP_WINDOWS structure.
+ */
+typedef struct {
+  /** Length of the windows list */
+  uint32_t windows_len;
+  /** Windows list */
+  xcb_window_t *windows;
+  /** Store reply to avoid memory allocation, should normally not be
+      used directly */
+  xcb_get_property_reply_t *_reply;
+} xcb_get_wm_colormap_windows_reply_t;
+
+/**
+ * @brief Send request to get WM_COLORMAP_WINDOWS property of a given window.
+ * @param c The connection to the X server.
+ * @param window Window X identifier.
+ * @return The request cookie.
+ */
+xcb_get_property_cookie_t xcb_get_wm_colormap_windows(xcb_connection_t *c,
+                                                      xcb_window_t window,
+                                                      xcb_atom_t wm_colormap_windows_atom);
+
+/**
+ * @see xcb_get_wm_colormap_windows()
+ */
+xcb_get_property_cookie_t xcb_get_wm_colormap_windows_unchecked(xcb_connection_t *c,
+                                                                xcb_window_t window,
+                                                                xcb_atom_t wm_colormap_windows_atom);
+
+/**
+ * @brief Fill the given structure with the WM_COLORMAP_WINDOWS property of a window.
+ * @param reply The reply of the GetProperty request.
+ * @param colormap_windows WM_COLORMAP property value.
+ * @return Return 1 on success, 0 otherwise.
+ *
+ * protocols structure members should be freed by
+ * xcb_get_wm_protocols_reply_wipe().
+ */
+uint8_t xcb_get_wm_colormap_windows_from_reply(xcb_get_property_reply_t *reply,
+                                               xcb_get_wm_colormap_windows_reply_t *colormap_windows);
+/**
+ * @brief Fill the given structure with the WM_COLORMAP_WINDOWS property of a window.
+ * @param c The connection to the X server.
+ * @param cookie Request cookie.
+ * @param protocols WM_COLORMAP_WINDOWS property value.
+ * @param e Error if any.
+ * @return Return 1 on success, 0 otherwise.
+ *
+ * The parameter e supplied to this function must be NULL if
+ * xcb_get_wm_colormap_windows_unchecked() is used.  Otherwise, it
+ * stores the error if any. protocols structure members should be
+ * freed by xcb_get_wm_colormap_windows_reply_wipe().
+ */
+uint8_t xcb_get_wm_colormap_windows_reply(xcb_connection_t *c,
+                                          xcb_get_property_cookie_t cookie,
+                                          xcb_get_wm_colormap_windows_reply_t *windows,
+                                          xcb_generic_error_t **e);
+
+/**
+ * @brief Wipe protocols structure members previously allocated by
+ *        xcb_get_wm_colormap_windows_reply().
+ * @param windows windows structure whose members is going to be freed.
+ */
+void xcb_get_wm_colormap_windows_reply_wipe(xcb_get_wm_colormap_windows_reply_t *windows);
+
 /* WM_CLIENT_MACHINE */
 
 /**
