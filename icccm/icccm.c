@@ -60,8 +60,10 @@ xcb_get_text_property_reply(xcb_connection_t *c,
 {
   xcb_get_property_reply_t *reply = xcb_get_property_reply(c, cookie, e);
 
-  if(!reply || reply->type == XCB_NONE)
+  if(!reply || reply->type == XCB_NONE) {
+    free(reply);
     return 0;
+  }
 
   prop->_reply = reply;
   prop->encoding = prop->_reply->type;
