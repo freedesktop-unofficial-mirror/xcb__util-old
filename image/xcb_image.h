@@ -513,7 +513,7 @@ xcb_image_subimage(xcb_image_t *  image,
  * bits. For XYPixmap and ZPixmap, the depth must match the depth of
  * the drawable, or a ``BadMatch'' error results.
  *
- * If a problem occurs, the functons returns @c 0. Otherwise, it
+ * If a problem occurs, the function returns @c 0. Otherwise, it
  * returns @c 1.
  * @ingroup xcb__image_t
  */
@@ -551,7 +551,7 @@ xcb_image_shm_put (xcb_connection_t *      conn,
  * within the drawable, and @p plane_mask defines which planes are to be
  * read.
  *
- * If a problem occurs, the functons returns @c 0. It returns 1
+ * If a problem occurs, the function returns @c 0. It returns 1
  * otherwise.
  * @ingroup xcb__image_t
  */

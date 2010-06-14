@@ -168,7 +168,7 @@ XCB_EVENT_MAKE_EVENT_HANDLER(colormap_notify, COLORMAP_NOTIFY)
 XCB_EVENT_MAKE_EVENT_HANDLER(client_message, CLIENT_MESSAGE)
 XCB_EVENT_MAKE_EVENT_HANDLER(mapping_notify, MAPPING_NOTIFY)
 
-/** Everyting is ok */
+/** Everything is ok */
 #define XCB_EVENT_ERROR_SUCESS 0
 /** Bad request code */
 #define XCB_EVENT_ERROR_BAD_REQUEST 1
@@ -214,7 +214,7 @@ XCB_EVENT_MAKE_EVENT_HANDLER(mapping_notify, MAPPING_NOTIFY)
 #define XCB_EVENT_ERROR_BAD_IMPLEMENTATION 17
 
 /**
- * @brief Convert an event reponse type to a label.
+ * @brief Convert an event response type to a label.
  * @param type The event type.
  * @return A string with the event name, or NULL if unknown.
  */
@@ -222,7 +222,7 @@ const char * xcb_event_get_label(uint8_t type);
 
 /**
  * @brief Convert an event error type to a label.
- * @param type The erro type.
+ * @param type The error type.
  * @return A string with the event name, or NULL if unknown or if the event is
  * not an error.
  */

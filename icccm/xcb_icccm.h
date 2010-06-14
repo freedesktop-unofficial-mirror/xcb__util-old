@@ -465,7 +465,7 @@ xcb_get_property_cookie_t xcb_get_wm_class_unchecked(xcb_connection_t *c,
 
 /**
  * @brief Fill give structure with the WM_CLASS property of a window.
- * @param prop The property structur to fill.
+ * @param prop The property structure to fill.
  * @param reply The property request reply.
  * @return Return 1 on success, 0 otherwise.
  */

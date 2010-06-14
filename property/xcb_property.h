@@ -29,7 +29,7 @@
 /**
  * @defgroup xcb__property_t XCB Property Functions
  *
- * These functions ease the handling of X propertiess received.
+ * These functions ease the handling of X properties received.
  *
  * @{
  */
