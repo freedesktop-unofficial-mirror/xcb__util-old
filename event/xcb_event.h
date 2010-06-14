@@ -169,7 +169,7 @@ XCB_EVENT_MAKE_EVENT_HANDLER(client_message, CLIENT_MESSAGE)
 XCB_EVENT_MAKE_EVENT_HANDLER(mapping_notify, MAPPING_NOTIFY)
 
 /** Everything is ok */
-#define XCB_EVENT_ERROR_SUCESS 0
+#define XCB_EVENT_ERROR_SUCCESS 0
 /** Bad request code */
 #define XCB_EVENT_ERROR_BAD_REQUEST 1
 /** Int parameter out of range */
