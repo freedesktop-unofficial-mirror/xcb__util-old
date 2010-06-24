@@ -10,7 +10,7 @@ AM_CFLAGS = $(CWARNFLAGS)
 libxcb_event_la_SOURCES = event.c
 libxcb_event_la_CPPFLAGS = $(XCB_CFLAGS)
 libxcb_event_la_LIBADD = $(XCB_LIBS)
-libxcb_event_la_LDFLAGS = -version-info 1:0:0
+libxcb_event_la_LDFLAGS = -version-info 2:0:0
 
 pkgconfig_DATA = xcb-event.pc
 

@@ -40,7 +40,6 @@
  */
 
 #include <xcb/xcb.h>
-#include "xcb_property.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -166,16 +165,6 @@ uint8_t xcb_get_wm_name_reply(xcb_connection_t *c,
                               xcb_get_text_property_reply_t *prop,
                               xcb_generic_error_t **e);
 
-/**
- * @brief Set a callback on WM_NAME property changes.
- * @param prophs Property handlers.
- * @param long_len Length of data.
- * @param handler The callback.
- * @param data data given to the callback.
- */
-uint8_t xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
-			  xcb_generic_property_handler_t handler, void *data);
-
 /* WM_ICON_NAME */
 
 /**
@@ -232,18 +221,6 @@ uint8_t xcb_get_wm_icon_name_reply(xcb_connection_t *c,
                                    xcb_get_property_cookie_t cookie,
                                    xcb_get_text_property_reply_t *prop,
                                    xcb_generic_error_t **e);
-
-/**
- * @brief Set a callback on WM_ICON_NAME property changes.
- * @param prophs Property handlers.
- * @param long_len Length of data.
- * @param handler The callback.
- * @param data data given to the callback.
- */
-uint8_t xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs,
-			       uint32_t long_len,
-			       xcb_generic_property_handler_t handler,
-			       void *data);
 
 /* WM_COLORMAP_WINDOWS */
 
@@ -393,18 +370,6 @@ uint8_t xcb_get_wm_client_machine_reply(xcb_connection_t *c,
                                         xcb_get_property_cookie_t cookie,
                                         xcb_get_text_property_reply_t *prop,
                                         xcb_generic_error_t **e);
-
-/**
- * @brief Set a callback on WM_CLIENT_MACHINE property changes.
- * @param prophs Property handlers.
- * @param long_len Length of data.
- * @param handler The callback.
- * @param data data given to the callback.
- */
-uint8_t xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs,
-				    uint32_t long_len,
-				    xcb_generic_property_handler_t handler,
-				    void *data);
 
 /* WM_CLASS */
 

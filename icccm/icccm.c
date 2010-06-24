@@ -40,7 +40,7 @@ xcb_get_text_property(xcb_connection_t *c,
                       xcb_window_t window,
                       xcb_atom_t property)
 {
-  return xcb_get_any_property(c, 0, window, property, UINT_MAX);
+  return xcb_get_property(c, 0, window, property, XCB_GET_PROPERTY_TYPE_ANY, 0, UINT_MAX);
 }
 
 xcb_get_property_cookie_t
@@ -48,7 +48,7 @@ xcb_get_text_property_unchecked(xcb_connection_t *c,
                                 xcb_window_t window,
                                 xcb_atom_t property)
 {
-  return xcb_get_any_property_unchecked(c, 0, window, property, UINT_MAX);
+  return xcb_get_property_unchecked(c, 0, window, property, XCB_GET_PROPERTY_TYPE_ANY, 0, UINT_MAX);
 }
 
 uint8_t
@@ -123,13 +123,6 @@ xcb_get_wm_name_reply(xcb_connection_t *c,
   return xcb_get_text_property_reply(c, cookie, prop, e);
 }
 
-uint8_t
-xcb_watch_wm_name(xcb_property_handlers_t *prophs, uint32_t long_len,
-                  xcb_generic_property_handler_t handler, void *data)
-{
-  return xcb_property_set_handler(prophs, XCB_ATOM_WM_NAME, long_len, handler, data);
-}
-
 /* WM_ICON_NAME */
 
 xcb_void_cookie_t
@@ -173,14 +166,6 @@ xcb_get_wm_icon_name_reply(xcb_connection_t *c,
                            xcb_generic_error_t **e)
 {
   return xcb_get_text_property_reply(c, cookie, prop, e);
-}
-
-uint8_t
-xcb_watch_wm_icon_name(xcb_property_handlers_t *prophs, uint32_t long_len,
-                       xcb_generic_property_handler_t handler, void *data)
-{
-  return xcb_property_set_handler(prophs, XCB_ATOM_WM_ICON_NAME, long_len, handler,
-				  data);
 }
 
 /* WM_COLORMAP_WINDOWS */
@@ -304,14 +289,6 @@ xcb_get_wm_client_machine_reply(xcb_connection_t *c,
                                 xcb_generic_error_t **e)
 {
   return xcb_get_text_property_reply(c, cookie, prop, e);
-}
-
-uint8_t
-xcb_watch_wm_client_machine(xcb_property_handlers_t *prophs, uint32_t long_len,
-                            xcb_generic_property_handler_t handler, void *data)
-{
-  return xcb_property_set_handler(prophs, XCB_ATOM_WM_CLIENT_MACHINE, long_len, handler,
-				  data);
 }
 
 /* WM_CLASS */

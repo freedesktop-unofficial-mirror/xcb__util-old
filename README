@@ -13,10 +13,9 @@ These libraries are currently included, roughly ordered by maturity:
 render-util: Convenience functions for the Render extension.
 aux: Convenient access to connection setup and some core requests.
 atom: Standard core X atom constants and atom caching.
-property: Callback X property-change handling.
 icccm: Both client and window-manager helpers for ICCCM.
 keysyms: Standard X key constants and conversion to/from keycodes.
-event: Callback X event handling.
+event: Some utilities that have little to do with events any more.
 image: Port of Xlib's XImage and XShmImage functions.
 
 If you find any of these libraries useful, please let us know what

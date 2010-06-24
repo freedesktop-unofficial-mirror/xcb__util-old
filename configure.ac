@@ -80,31 +80,21 @@ XCB_AUX_CFLAGS='-I$(top_srcdir)/aux'
 XCB_AUX_LIBS='$(top_builddir)/aux/libxcb-aux.la'
 XCB_ATOM_CFLAGS='-I$(top_srcdir)/atom -I$(top_builddir)/atom'
 XCB_ATOM_LIBS='$(top_builddir)/atom/libxcb-atom.la'
-XCB_EVENT_CFLAGS='-I$(top_srcdir)/event'
-XCB_EVENT_LIBS='$(top_builddir)/event/libxcb-event.la'
-XCB_PROPERTY_CFLAGS='-I$(top_srcdir)/property'
-XCB_PROPERTY_LIBS='$(top_builddir)/property/libxcb-property.la'
 XCB_ICCCM_CFLAGS='-I$(top_srcdir)/icccm'
 XCB_ICCCM_LIBS='$(top_builddir)/icccm/libxcb-icccm.la'
 AC_SUBST(XCB_AUX_CFLAGS)
 AC_SUBST(XCB_AUX_LIBS)
 AC_SUBST(XCB_ATOM_CFLAGS)
 AC_SUBST(XCB_ATOM_LIBS)
-AC_SUBST(XCB_EVENT_CFLAGS)
-AC_SUBST(XCB_EVENT_LIBS)
-AC_SUBST(XCB_PROPERTY_CFLAGS)
-AC_SUBST(XCB_PROPERTY_LIBS)
 AC_SUBST(XCB_ICCCM_CFLAGS)
 AC_SUBST(XCB_ICCCM_LIBS)
 
 AC_OUTPUT([Makefile
 	aux/Makefile aux/xcb-aux.pc
-	reply/Makefile reply/xcb-reply.pc
 	image/Makefile image/xcb-image.pc
 	atom/Makefile atom/xcb-atom.pc
 	event/Makefile event/xcb-event.pc
 	keysyms/Makefile keysyms/xcb-keysyms.pc
-	property/Makefile property/xcb-property.pc
 	icccm/Makefile icccm/xcb-icccm.pc
 	renderutil/Makefile renderutil/xcb-renderutil.pc
 	xcb_util_intro
