@@ -16,7 +16,7 @@ pkgconfig_DATA = xcb-image.pc
 
 EXTRA_DIST=xcb-image.pc.in
 
-EXTRA_PROGRAMS = test_xcb_image test_xcb_image_shm test_formats test_bitmap
+noinst_PROGRAMS = test_xcb_image test_xcb_image_shm test_formats test_bitmap
 
 check_PROGRAMS = test_swap
 
