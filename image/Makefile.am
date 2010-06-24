@@ -39,6 +39,6 @@ test_formats_SOURCES = test_formats.c
 test_formats_CPPFLAGS = $(XCB_CFLAGS) $(XCB_SHM_CFLAGS) $(XCB_AUX_CFLAGS)
 test_formats_LDADD = $(XCB_LIBS) $(XCB_AUX_LIBS) $(XCB_IMAGE_LIBS)
 
-test_bitmap_SOURCES = test_bitmap.c
+test_bitmap_SOURCES = test_bitmap.c test.xbm
 test_bitmap_CPPFLAGS = $(XCB_CFLAGS) $(XCB_SHM_CFLAGS) $(XCB_AUX_CFLAGS)
 test_bitmap_LDADD = $(XCB_LIBS) $(XCB_AUX_LIBS) $(XCB_IMAGE_LIBS)
