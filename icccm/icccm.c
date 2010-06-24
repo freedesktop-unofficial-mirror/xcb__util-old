@@ -32,7 +32,6 @@
 #include <string.h>
 
 #include <xcb/xcb.h>
-#include <xcb/xproto.h>
 
 #include "xcb_icccm.h"
 
