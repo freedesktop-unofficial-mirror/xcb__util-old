@@ -81,6 +81,8 @@ xcb_key_symbols_alloc (xcb_connection_t *c)
     return NULL;
 
   syms = malloc (sizeof (xcb_key_symbols_t));
+  if (!syms)
+    return NULL;
 
   syms->c = c;
   syms->tag = TAG_COOKIE;

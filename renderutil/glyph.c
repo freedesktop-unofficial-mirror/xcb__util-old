@@ -66,6 +66,8 @@ xcb_render_util_composite_text_stream (
 	}
 
 	stream = malloc(sizeof(xcb_render_util_composite_text_stream_t));
+	if (!stream)
+		return NULL;
 
 	stream->glyph_size = 0;
 	stream->initial_glyphset = initial_glyphset;
